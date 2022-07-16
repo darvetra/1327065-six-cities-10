@@ -1,8 +1,13 @@
 import MainScreen from '../../pages/main-screen/main-screen';
+import {HotelType} from '../../types/hotel';
 
-function App(): JSX.Element {
+type AppScreenProps = {
+  hotels: HotelType[];
+}
+
+function App({hotels}: AppScreenProps): JSX.Element {
   return (
-    <MainScreen />
+    <MainScreen hotels={hotels}/>
   );
 }
 
