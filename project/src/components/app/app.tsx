@@ -1,5 +1,14 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import MainScreen from '../../pages/main-screen/main-screen';
+import {HotelType} from '../../types/hotel';
+
+type AppScreenProps = {
+  hotels: HotelType[];
+}
+
+function App({hotels}: AppScreenProps): JSX.Element {
+  return (
+    <MainScreen hotels={hotels}/>
+  );
 }
 
 export default App;
