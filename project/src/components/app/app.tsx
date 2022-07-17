@@ -1,13 +1,14 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {HotelType} from '../../types/hotel';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   hotels: HotelType[];
@@ -27,7 +28,13 @@ function App({hotels}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Favorites}
-          element={<FavoritesScreen />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <FavoritesScreen />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Room}
