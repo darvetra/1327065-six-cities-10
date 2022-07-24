@@ -1,6 +1,6 @@
 import {HotelType} from '../types/hotel';
 
-export const hotels : HotelType[] = [
+export const offers : HotelType[] = [
   {
     // bedrooms: number,
     // city: {

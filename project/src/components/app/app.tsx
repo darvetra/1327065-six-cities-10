@@ -11,16 +11,16 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  hotels: HotelType[];
+  offers: HotelType[];
 }
 
-function App({hotels}: AppScreenProps): JSX.Element {
+function App({offers}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen hotels={hotels} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={AppRoute.Login}

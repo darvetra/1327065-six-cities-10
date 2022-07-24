@@ -1,13 +1,13 @@
 import Header from '../../components/header/header';
-import PlaceCard from '../../components/place-card/place-card';
+import PlacesList from '../../components/places-list/places-list';
 
 import {HotelType} from '../../types/hotel';
 
 type MainScreenProps = {
-  hotels: HotelType[];
+  offers: HotelType[];
 }
 
-function MainScreen({hotels}: MainScreenProps): JSX.Element {
+function MainScreen({offers}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
 
@@ -55,7 +55,7 @@ function MainScreen({hotels}: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{hotels.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -71,11 +71,9 @@ function MainScreen({hotels}: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
 
-                {hotels.map((hotel) => <PlaceCard hotel={hotel} key={hotel.id} />)}
+              <PlacesList offers={offers} />
 
-              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"/>
