@@ -1,15 +1,19 @@
 import {HotelType} from '../../types/hotel';
 
 type PlaceCardProps = {
-  hotel: HotelType;
+  hotel: HotelType,
+  onMouseOver: () => void;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {hotel} = props;
+  const {hotel, onMouseOver} = props;
   const {title, type, price, previewImage} = hotel;
 
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseOver={onMouseOver}
+    >
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
