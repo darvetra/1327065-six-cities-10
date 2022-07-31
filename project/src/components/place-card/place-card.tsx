@@ -1,7 +1,7 @@
-import {HotelType} from '../../types/hotel';
+import {OfferType} from '../../types/hotel';
 
 type PlaceCardProps = {
-  hotel: HotelType,
+  hotel: OfferType,
   onMouseOver: () => void;
 }
 

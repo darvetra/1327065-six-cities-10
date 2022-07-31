@@ -1,10 +1,10 @@
 import Header from '../../components/header/header';
 import PlacesList from '../../components/places-list/places-list';
 
-import {HotelType} from '../../types/hotel';
+import {OfferType} from '../../types/hotel';
 
 type MainScreenProps = {
-  offers: HotelType[];
+  offers: OfferType[];
 }
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {

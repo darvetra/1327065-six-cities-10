@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
 
-import {HotelType} from '../../types/hotel';
+import {OfferType} from '../../types/hotel';
 
 type PlacesListProps = {
-  offers: HotelType[];
+  offers: OfferType[];
 }
 
 function PlacesList({offers}: PlacesListProps): JSX.Element {

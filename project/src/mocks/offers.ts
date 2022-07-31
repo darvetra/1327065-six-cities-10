@@ -1,16 +1,16 @@
-import {HotelType} from '../types/hotel';
+import {OfferType} from '../types/hotel';
 
-export const offers : HotelType[] = [
+export const offers : OfferType[] = [
   {
     // bedrooms: number,
-    // city: {
+    city: {
     //   location: {
     //     latitude: number,
     //     longitude: number,
     //     zoom: number,
     //   },
-    //   name: string,
-    // },
+      name: 'Cologne',
+    },
     // description: string,
     // goods: [string],
     // host: {
@@ -37,14 +37,14 @@ export const offers : HotelType[] = [
   },
   {
     // bedrooms: number,
-    // city: {
+    city: {
     //   location: {
     //     latitude: number,
     //     longitude: number,
     //     zoom: number,
     //   },
-    //   name: string,
-    // },
+      name: 'Paris',
+    },
     // description: string,
     // goods: [string],
     // host: {
@@ -71,14 +71,14 @@ export const offers : HotelType[] = [
   },
   {
     // bedrooms: number,
-    // city: {
+    city: {
     //   location: {
     //     latitude: number,
     //     longitude: number,
     //     zoom: number,
     //   },
-    //   name: string,
-    // },
+      name: 'Dusseldorf',
+    },
     // description: string,
     // goods: [string],
     // host: {
@@ -105,14 +105,14 @@ export const offers : HotelType[] = [
   },
   {
     // bedrooms: number,
-    // city: {
+    city: {
     //   location: {
     //     latitude: number,
     //     longitude: number,
     //     zoom: number,
     //   },
-    //   name: string,
-    // },
+      name: 'Amsterdam',
+    },
     // description: string,
     // goods: [string],
     // host: {
@@ -139,14 +139,14 @@ export const offers : HotelType[] = [
   },
   {
     // bedrooms: number,
-    // city: {
+    city: {
     //   location: {
     //     latitude: number,
     //     longitude: number,
     //     zoom: number,
     //   },
-    //   name: string,
-    // },
+      name: 'Amsterdam',
+    },
     // description: string,
     // goods: [string],
     // host: {

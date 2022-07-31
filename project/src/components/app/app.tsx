@@ -1,6 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {HotelType} from '../../types/hotel';
+import {OfferType} from '../../types/hotel';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -11,7 +11,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  offers: HotelType[];
+  offers: OfferType[];
 }
 
 function App({offers}: AppScreenProps): JSX.Element {
@@ -30,9 +30,9 @@ function App({offers}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen favoriteOffers={offers} />
             </PrivateRoute>
           }
         />
