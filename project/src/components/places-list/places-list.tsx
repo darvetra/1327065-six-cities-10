@@ -14,7 +14,7 @@ function PlacesList({offers}: PlacesListProps): JSX.Element {
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <PlaceCard
-          hotel={offer}
+          offer={offer}
           key={offer.id}
           onMouseOver={() => setActiveCardId(offer.id)}
         />)
