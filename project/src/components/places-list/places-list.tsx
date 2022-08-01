@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import PlaceCard from '../../components/place-card/place-card';
-
-import {OfferType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 
 type PlacesListProps = {
-  offers: OfferType[];
+  offers: OfferType[],
+  onHoverOfferChange?: (isActive: boolean, offer: OfferType) => void;
 }
 
-function PlacesList({offers}: PlacesListProps): JSX.Element {
-  const [, setActiveCardId] = useState<number>();
+function PlacesList(props: PlacesListProps): JSX.Element {
+  const {offers, onHoverOfferChange} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -16,7 +15,7 @@ function PlacesList({offers}: PlacesListProps): JSX.Element {
         <PlaceCard
           offer={offer}
           key={offer.id}
-          onMouseOver={() => setActiveCardId(offer.id)}
+          onHovered={onHoverOfferChange}
         />)
       )}
     </div>

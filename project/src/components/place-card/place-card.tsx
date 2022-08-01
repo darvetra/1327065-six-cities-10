@@ -1,20 +1,21 @@
 import {Link} from 'react-router-dom';
-import {OfferType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 import {calcRatingWidth} from '../../utils';
 
 type PlaceCardProps = {
   offer: OfferType,
-  onMouseOver: () => void;
+  onHovered?: (isSelected: boolean, offer: OfferType) => void;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {offer, onMouseOver} = props;
+  const {offer, onHovered} = props;
   const {id, title, isPremium, rating, type, price, previewImage} = offer;
 
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={onMouseOver}
+      onMouseOver={() => onHovered?.(true, offer)}
+      onMouseLeave={() => onHovered?.(false, offer)}
     >
       {isPremium ?
         <div className='place-card__mark'>
@@ -40,7 +41,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{'width': calcRatingWidth(rating)}}></span>
+            <span style={{'width': calcRatingWidth(rating)}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

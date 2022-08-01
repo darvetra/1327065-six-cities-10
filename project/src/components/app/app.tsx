@@ -1,6 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {OfferType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';

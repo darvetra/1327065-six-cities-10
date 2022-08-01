@@ -1,13 +1,16 @@
+import {useState} from 'react';
 import Header from '../../components/header/header';
 import PlacesList from '../../components/places-list/places-list';
 
-import {OfferType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 
 type MainScreenProps = {
   offers: OfferType[];
 }
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
+  const [, setActiveOffer] = useState<OfferType | null>(null);
+
   return (
     <div className="page page--gray page--main">
 
@@ -72,7 +75,10 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
 
-              <PlacesList offers={offers} />
+              <PlacesList
+                offers={offers}
+                onHoverOfferChange={(isActive, offer) => setActiveOffer(isActive ? offer : null)}
+              />
 
             </section>
             <div className="cities__right-section">

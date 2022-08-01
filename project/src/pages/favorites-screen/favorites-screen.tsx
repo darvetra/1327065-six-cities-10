@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import Header from '../../components/header/header';
-import {OfferType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 import {calcRatingWidth} from '../../utils';
 
 type FavoritesScreenProps = {

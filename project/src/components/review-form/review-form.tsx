@@ -1,10 +1,9 @@
 import {useState} from 'react';
+import {FieldEvent} from '../../types/fields';
 
 function ReviewForm() {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
-
-  type FieldEvent = React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>;
 
   const handleFieldChange = (evt: FieldEvent) => {
     setRating(evt.target.value);
@@ -18,6 +17,13 @@ function ReviewForm() {
     <form className='reviews__form form' action='#' method='post'>
       <label className='reviews__label form__label' htmlFor='review'>Your review</label>
       <div className='reviews__rating-form form__rating'>
+
+        {/*
+
+          вынести в цикл в будущем
+
+        */}
+
         <input className='form__rating-input visually-hidden' name='rating' value='5' id='5-stars' type='radio' onChange={handleFieldChange} checked={rating === '5'}/>
         <label htmlFor='5-stars' className='reviews__rating-label form__rating-label' title='perfect'>
           <svg className='form__star-image' width='37' height='33'>
