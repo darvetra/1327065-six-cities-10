@@ -1,22 +1,30 @@
-import {HotelType} from '../../types/hotel';
+import {Link} from 'react-router-dom';
+import {OfferType} from '../../types/offers';
+import {calcRatingWidth} from '../../utils';
 
 type PlaceCardProps = {
-  hotel: HotelType;
+  offer: OfferType,
+  onHovered?: (isSelected: boolean, offer: OfferType) => void;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {hotel} = props;
-  const {title, type, price, previewImage} = hotel;
+  const {offer, onHovered} = props;
+  const {id, title, isPremium, rating, type, price, previewImage} = offer;
 
   return (
-    <article className="cities__card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article
+      className="cities__card place-card"
+      onMouseOver={() => onHovered?.(true, offer)}
+      onMouseLeave={() => onHovered?.(false, offer)}
+    >
+      {isPremium ?
+        <div className='place-card__mark'>
+          <span>Premium</span>
+        </div> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        <Link to={`/offer/${id}`}>
+          <img className='place-card__image' src={previewImage} width='260' height='200' alt={title} />
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -33,7 +41,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}} />
+            <span style={{'width': calcRatingWidth(rating)}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

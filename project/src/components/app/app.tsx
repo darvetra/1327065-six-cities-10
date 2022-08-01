@@ -1,26 +1,26 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {HotelType} from '../../types/hotel';
+import {OfferType} from '../../types/offers';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import FavoritesScreen from '../../pages/favorites-screen/favorites-screen';
-import PropertyScreen from '../../pages/property-screen/property-screen';
+import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  hotels: HotelType[];
+  offers: OfferType[];
 }
 
-function App({hotels}: AppScreenProps): JSX.Element {
+function App({offers}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen hotels={hotels} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route
           path={AppRoute.Login}
@@ -30,15 +30,15 @@ function App({hotels}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen />
+              <FavoritesScreen favoriteOffers={offers} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<PropertyScreen />}
+          element={<RoomScreen />}
         />
         <Route
           path="*"
