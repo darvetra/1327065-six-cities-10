@@ -1,14 +1,19 @@
 import {useState} from 'react';
 import Header from '../../components/header/header';
 import PlacesList from '../../components/places-list/places-list';
+import Map from '../../components/map/map';
 
+import {MapSettings} from '../../types/map';
 import {OfferType} from '../../types/offers';
 
 type MainScreenProps = {
-  offers: OfferType[];
+  offers: OfferType[],
+  mapSettings: MapSettings,
 }
 
-function MainScreen({offers}: MainScreenProps): JSX.Element {
+function MainScreen(props: MainScreenProps): JSX.Element {
+  const {offers, mapSettings} = props;
+
   const [, setActiveOffer] = useState<OfferType | null>(null);
 
   return (
@@ -82,7 +87,10 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"/>
+
+              {/*<Map mapSettings={mapSettings} offers={offers} />*/}
+              <Map mapSettings={mapSettings} />
+
             </div>
           </div>
         </div>

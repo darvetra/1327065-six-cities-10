@@ -1,7 +1,7 @@
 export type LocationType = {
-  latitude?: number,
-  longitude?: number,
-  zoom?: number,
+  latitude: number,
+  longitude: number,
+  zoom: number,
 }
 
 export type HostType = {
@@ -13,7 +13,7 @@ export type HostType = {
 
 export type CityType = {
   name: string,
-  location?: LocationType,
+  location: LocationType,
 }
 
 export type OfferType = {
@@ -26,7 +26,7 @@ export type OfferType = {
   images?: string[],
   isFavorite: boolean,
   isPremium: boolean,
-  location?: LocationType,
+  location: LocationType,
   maxAdults?: number,
   previewImage: string,
   price: number,
