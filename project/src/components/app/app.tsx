@@ -1,3 +1,4 @@
+// import {useState} from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {OfferType} from '../../types/offers';
@@ -24,7 +25,12 @@ function App(props: AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen mapSettings={mapSettings} offers={offers} />}
+          element={
+            <MainScreen
+              mapSettings={mapSettings}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.Login}

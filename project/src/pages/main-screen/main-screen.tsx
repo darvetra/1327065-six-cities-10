@@ -14,7 +14,14 @@ type MainScreenProps = {
 function MainScreen(props: MainScreenProps): JSX.Element {
   const {offers, mapSettings} = props;
 
-  const [, setActiveOffer] = useState<OfferType | null>(null);
+  const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
+
+  const onHoverOfferChange = (id: number) => {
+    const currentOffer = offers.find((offer) =>
+      offer.id === id
+    );
+    setSelectedOffer(currentOffer);
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -82,13 +89,17 @@ function MainScreen(props: MainScreenProps): JSX.Element {
 
               <PlacesList
                 offers={offers}
-                onHoverOfferChange={(isActive, offer) => setActiveOffer(isActive ? offer : null)}
+                onHoverOfferChange={onHoverOfferChange}
               />
 
             </section>
             <div className="cities__right-section">
 
-              <Map mapSettings={mapSettings} offers={offers} />
+              <Map
+                mapSettings={mapSettings}
+                offers={offers}
+                selectedOffer={selectedOffer}
+              />
 
             </div>
           </div>

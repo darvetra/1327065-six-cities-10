@@ -3,7 +3,7 @@ import {OfferType} from '../../types/offers';
 
 type PlacesListProps = {
   offers: OfferType[],
-  onHoverOfferChange?: (isActive: boolean, offer: OfferType) => void;
+  onHoverOfferChange?: (id: number) => void,
 }
 
 function PlacesList(props: PlacesListProps): JSX.Element {
@@ -15,7 +15,7 @@ function PlacesList(props: PlacesListProps): JSX.Element {
         <PlaceCard
           offer={offer}
           key={offer.id}
-          onHovered={onHoverOfferChange}
+          onHoverOfferChange={onHoverOfferChange}
         />)
       )}
     </div>
