@@ -26,7 +26,7 @@ function Map(props: MapProps): JSX.Element {
   const mapRef = useRef(null);
   /* eslint-disable no-alert, no-console */
   /* eslint-disable */
-  const map = useMap({ mapRef, mapSettings });
+  const map = useMap({mapRef, mapSettings});
 
   // useEffect(() => {
   //   if (map) {
@@ -45,9 +45,7 @@ function Map(props: MapProps): JSX.Element {
   //   }
   // }, [map, offers]);
 
-  // return <section style={{height: '500px'}} ref={mapRef} className='cities__map map'></section>;
-  // return <section style={{height: '500px'}} ref={mapRef} className='cities__map map'></section>;
-  return <section style={{height: '600px'}} ref={mapRef} className=''></section>;
+  return <section style={{height: '500px'}} ref={mapRef} className='cities__map map'></section>;
 
 }
 
