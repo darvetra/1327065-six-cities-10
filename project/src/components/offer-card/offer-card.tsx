@@ -2,20 +2,19 @@ import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offers';
 import {calcRatingWidth} from '../../utils';
 
-type PlaceCardProps = {
+type OfferCardProps = {
   offer: OfferType,
-  onHovered?: (isSelected: boolean, offer: OfferType) => void;
+  onHoverOfferChange?: (id: number) => void,
 }
 
-function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {offer, onHovered} = props;
+function OfferCard(props: OfferCardProps): JSX.Element {
+  const {offer, onHoverOfferChange} = props;
   const {id, title, isPremium, rating, type, price, previewImage} = offer;
 
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={() => onHovered?.(true, offer)}
-      onMouseLeave={() => onHovered?.(false, offer)}
+      onMouseOver={() => onHoverOfferChange && onHoverOfferChange(id)}
     >
       {isPremium ?
         <div className='place-card__mark'>
@@ -54,4 +53,4 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default OfferCard;

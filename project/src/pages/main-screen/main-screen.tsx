@@ -1,15 +1,27 @@
 import {useState} from 'react';
 import Header from '../../components/header/header';
-import PlacesList from '../../components/places-list/places-list';
+import OffersList from '../../components/offers-list/offers-list';
+import Map from '../../components/map/map';
 
+import {MapSettings} from '../../types/map';
 import {OfferType} from '../../types/offers';
 
 type MainScreenProps = {
-  offers: OfferType[];
+  offers: OfferType[],
+  mapSettings: MapSettings,
 }
 
-function MainScreen({offers}: MainScreenProps): JSX.Element {
-  const [, setActiveOffer] = useState<OfferType | null>(null);
+function MainScreen(props: MainScreenProps): JSX.Element {
+  const {offers, mapSettings} = props;
+
+  const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
+
+  const onHoverOfferChange = (id: number) => {
+    const currentOffer = offers.find((offer) =>
+      offer.id === id
+    );
+    setSelectedOffer(currentOffer);
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -75,14 +87,20 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
 
-              <PlacesList
+              <OffersList
                 offers={offers}
-                onHoverOfferChange={(isActive, offer) => setActiveOffer(isActive ? offer : null)}
+                onHoverOfferChange={onHoverOfferChange}
               />
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"/>
+
+              <Map
+                mapSettings={mapSettings}
+                offers={offers}
+                selectedOffer={selectedOffer}
+              />
+
             </div>
           </div>
         </div>

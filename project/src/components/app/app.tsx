@@ -1,6 +1,8 @@
+// import {useState} from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {OfferType} from '../../types/offers';
+import {MapSettings} from '../../types/map';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -11,16 +13,24 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  offers: OfferType[];
+  offers: OfferType[],
+  mapSettings: MapSettings,
 }
 
-function App({offers}: AppScreenProps): JSX.Element {
+function App(props: AppScreenProps): JSX.Element {
+  const {offers, mapSettings} = props;
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen offers={offers} />}
+          element={
+            <MainScreen
+              mapSettings={mapSettings}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.Login}

@@ -1,25 +1,25 @@
-import PlaceCard from '../../components/place-card/place-card';
+import OfferCard from '../offer-card/offer-card';
 import {OfferType} from '../../types/offers';
 
-type PlacesListProps = {
+type OffersListProps = {
   offers: OfferType[],
-  onHoverOfferChange?: (isActive: boolean, offer: OfferType) => void;
+  onHoverOfferChange?: (id: number) => void,
 }
 
-function PlacesList(props: PlacesListProps): JSX.Element {
+function OffersList(props: OffersListProps): JSX.Element {
   const {offers, onHoverOfferChange} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
-        <PlaceCard
+        <OfferCard
           offer={offer}
           key={offer.id}
-          onHovered={onHoverOfferChange}
+          onHoverOfferChange={onHoverOfferChange}
         />)
       )}
     </div>
   );
 }
 
-export default PlacesList;
+export default OffersList;
