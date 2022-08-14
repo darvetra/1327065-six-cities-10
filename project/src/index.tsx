@@ -5,8 +5,8 @@ import App from './components/app/app';
 import {offers} from './mocks/offers';
 
 const MAP_SETTINGS = {
-  latitude: 52.3909553943508,
-  longitude: 4.85309666406198,
+  latitude: 52.37454,
+  longitude: 4.897976,
   zoom: 13,
 };
 
