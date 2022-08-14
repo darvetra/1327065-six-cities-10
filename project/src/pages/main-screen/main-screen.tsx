@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Header from '../../components/header/header';
-import PlacesList from '../../components/places-list/places-list';
+import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 
 import {MapSettings} from '../../types/map';
@@ -87,7 +87,7 @@ function MainScreen(props: MainScreenProps): JSX.Element {
                 </ul>
               </form>
 
-              <PlacesList
+              <OffersList
                 offers={offers}
                 onHoverOfferChange={onHoverOfferChange}
               />

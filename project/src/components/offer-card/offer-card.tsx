@@ -2,12 +2,12 @@ import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offers';
 import {calcRatingWidth} from '../../utils';
 
-type PlaceCardProps = {
+type OfferCardProps = {
   offer: OfferType,
   onHoverOfferChange?: (id: number) => void,
 }
 
-function PlaceCard(props: PlaceCardProps): JSX.Element {
+function OfferCard(props: OfferCardProps): JSX.Element {
   const {offer, onHoverOfferChange} = props;
   const {id, title, isPremium, rating, type, price, previewImage} = offer;
 
@@ -53,4 +53,4 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default OfferCard;
