@@ -21,7 +21,7 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   mapSettings: MapSettings,
   offers: OfferType[],
-  selectedOffer: OfferType | undefined,
+  selectedOffer?: OfferType | undefined,
 };
 
 function Map(props: MapProps): JSX.Element {
@@ -51,7 +51,7 @@ function Map(props: MapProps): JSX.Element {
 
   return (
     <section
-      style={{height: '500px'}}
+      style={{height: '100%'}}
       ref={mapRef}
       className='cities__map map'
     />
