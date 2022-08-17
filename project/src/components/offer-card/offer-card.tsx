@@ -5,15 +5,16 @@ import {calcRatingWidth} from '../../utils';
 type OfferCardProps = {
   offer: OfferType,
   onHoverOfferChange?: (id: number) => void,
+  offerCardClass: string,
 }
 
 function OfferCard(props: OfferCardProps): JSX.Element {
-  const {offer, onHoverOfferChange} = props;
+  const {offer, onHoverOfferChange, offerCardClass} = props;
   const {id, title, isPremium, rating, type, price, previewImage} = offer;
 
   return (
     <article
-      className="cities__card place-card"
+      className={offerCardClass}
       onMouseOver={() => onHoverOfferChange && onHoverOfferChange(id)}
     >
       {isPremium ?

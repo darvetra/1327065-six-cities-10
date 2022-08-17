@@ -4,18 +4,21 @@ import {OfferType} from '../../types/offers';
 type OffersListProps = {
   offers: OfferType[],
   onHoverOfferChange?: (id: number) => void,
+  offersListClass: string,
+  offerCardClass: string,
 }
 
 function OffersList(props: OffersListProps): JSX.Element {
-  const {offers, onHoverOfferChange} = props;
+  const {offers, onHoverOfferChange, offersListClass, offerCardClass} = props;
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={offersListClass}>
       {offers.map((offer) => (
         <OfferCard
           offer={offer}
           key={offer.id}
           onHoverOfferChange={onHoverOfferChange}
+          offerCardClass={offerCardClass}
         />)
       )}
     </div>
