@@ -271,8 +271,8 @@ export const offers : OfferType[] = [
     ],
     'host': {
       'id': 25,
-      'name': 'Angelina',
-      'isPro': true,
+      'name': 'Veronika',
+      'isPro': false,
       'avatarUrl': 'img/avatar-angelina.jpg'
     },
     'description': 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',

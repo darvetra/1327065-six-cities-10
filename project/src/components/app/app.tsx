@@ -1,8 +1,8 @@
-// import {useState} from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {OfferType} from '../../types/offers';
 import {MapSettings} from '../../types/map';
+
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -48,7 +48,12 @@ function App(props: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<RoomScreen />}
+          element={
+            <RoomScreen
+              mapSettings={mapSettings}
+              offers={offers}
+            />
+          }
         />
         <Route
           path="*"

@@ -5,10 +5,10 @@ export type LocationType = {
 }
 
 export type HostType = {
-  id?: number,
-  name?: string,
-  isPro?: boolean,
-  avatarUrl?: string,
+  id: number,
+  name: string,
+  isPro: boolean,
+  avatarUrl: string,
 }
 
 export type CityType = {
@@ -17,17 +17,17 @@ export type CityType = {
 }
 
 export type OfferType = {
-  bedrooms?: number,
+  bedrooms: number,
   city: CityType,
-  description?: string,
-  goods?: string[],
-  host?: HostType,
+  description: string,
+  goods: string[],
+  host: HostType,
   id: number,
-  images?: string[],
+  images: string[],
   isFavorite: boolean,
   isPremium: boolean,
   location: LocationType,
-  maxAdults?: number,
+  maxAdults: number,
   previewImage: string,
   price: number,
   rating: number,

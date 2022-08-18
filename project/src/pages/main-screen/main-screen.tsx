@@ -5,6 +5,7 @@ import Map from '../../components/map/map';
 
 import {MapSettings} from '../../types/map';
 import {OfferType} from '../../types/offers';
+import {OfferCardStyles} from '../../const';
 
 type MainScreenProps = {
   offers: OfferType[],
@@ -90,6 +91,8 @@ function MainScreen(props: MainScreenProps): JSX.Element {
               <OffersList
                 offers={offers}
                 onHoverOfferChange={onHoverOfferChange}
+                offersListClass={OfferCardStyles.MainOffersListClass}
+                offerCardClass={OfferCardStyles.MainOfferCardClass}
               />
 
             </section>
