@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {Provider} from 'react-redux';
+
+import {store} from './store';
 import App from './components/app/app';
 
 import {offers} from './mocks/offers';
@@ -16,6 +19,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App mapSettings={MAP_SETTINGS} offers={offers} />
+    <Provider store = {store}>
+      <App
+        mapSettings={MAP_SETTINGS}
+        offers={offers}
+      />
+    </Provider>
   </React.StrictMode>,
 );
