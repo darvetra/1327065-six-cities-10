@@ -28,7 +28,6 @@ function App(props: AppScreenProps): JSX.Element {
           element={
             <MainScreen
               mapSettings={mapSettings}
-              offers={offers}
             />
           }
         />
