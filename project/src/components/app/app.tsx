@@ -1,8 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {OfferType} from '../../types/offers';
-import {MapSettings} from '../../types/map';
-
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -12,24 +9,14 @@ import RoomScreen from '../../pages/room-screen/room-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 
-type AppScreenProps = {
-  offers: OfferType[],
-  mapSettings: MapSettings,
-}
-
-function App(props: AppScreenProps): JSX.Element {
-  const {offers, mapSettings} = props;
+function App(): JSX.Element {
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <MainScreen
-              mapSettings={mapSettings}
-            />
-          }
+          element={ <MainScreen /> }
         />
         <Route
           path={AppRoute.Login}
@@ -41,22 +28,17 @@ function App(props: AppScreenProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesScreen favoriteOffers={offers} />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={
-            <RoomScreen
-              mapSettings={mapSettings}
-              offers={offers}
-            />
-          }
+          element={ <RoomScreen /> }
         />
         <Route
           path="*"
-          element={<NotFoundScreen />}
+          element={ <NotFoundScreen /> }
         />
       </Routes>
     </BrowserRouter>

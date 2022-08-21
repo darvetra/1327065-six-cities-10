@@ -7,17 +7,10 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Locations from '../../components/locations/locations';
 
-import {MapSettings} from '../../types/map';
 import {OfferType} from '../../types/offers';
 import {OfferCardStyles, locations} from '../../const';
 
-type MainScreenProps = {
-  mapSettings: MapSettings,
-}
-
-function MainScreen(props: MainScreenProps): JSX.Element {
-  const {mapSettings} = props;
-
+function MainScreen(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
   const offersByCity = useAppSelector((state) => state.offers);
@@ -74,8 +67,6 @@ function MainScreen(props: MainScreenProps): JSX.Element {
             <div className="cities__right-section">
 
               <Map
-                mapSettings={mapSettings}
-                offers={offersByCity}
                 selectedOffer={selectedOffer}
               />
 

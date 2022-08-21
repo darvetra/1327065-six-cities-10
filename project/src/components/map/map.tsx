@@ -1,8 +1,8 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import useMap from '../../hooks/use-map';
-import {MapSettings} from '../../types/map';
 import {OfferType} from '../../types/offers';
+import {useAppSelector} from '../../hooks';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
 
@@ -19,13 +19,12 @@ const currentCustomIcon = new Icon({
 });
 
 type MapProps = {
-  mapSettings: MapSettings,
-  offers: OfferType[],
   selectedOffer?: OfferType | undefined,
 };
 
 function Map(props: MapProps): JSX.Element {
-  const {mapSettings, offers, selectedOffer} = props;
+  const {selectedOffer} = props;
+  const {offers, mapSettings} = useAppSelector((state) => state);
 
   const mapRef = useRef(null);
   const map = useMap({mapRef, mapSettings});

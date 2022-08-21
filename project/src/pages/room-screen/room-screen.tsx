@@ -7,25 +7,20 @@ import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
 
 import {OfferType} from '../../types/offers';
-import {MapSettings} from '../../types/map';
 
 import {calcRatingWidth} from '../../utils';
 import {OfferCardStyles} from '../../const';
 
 import {reviews} from '../../mocks/reviews';
+import {useAppSelector} from '../../hooks';
 
-type RoomScreenProps = {
-  offers: OfferType[],
-  mapSettings: MapSettings,
-}
-
-function RoomScreen(props: RoomScreenProps): JSX.Element {
-  const {offers, mapSettings} = props;
+function RoomScreen(): JSX.Element {
+  const offersByCity = useAppSelector((state) => state.offers);
 
   const location = useLocation();
   const urlId = Number(location.pathname.split('/').slice(-1));
-  const offer: OfferType | undefined = offers.find((item) => item.id === urlId);
-  const offerNeighbourhood = offers.slice(0, 3);
+  const offer: OfferType | undefined = offersByCity.find((item) => item.id === urlId);
+  const offerNeighbourhood = offersByCity.slice(0, 3);
   const reviewsCount = reviews.length;
 
   return (
@@ -134,10 +129,7 @@ function RoomScreen(props: RoomScreenProps): JSX.Element {
           </div>
           <section className='property__map map'>
 
-            <Map
-              mapSettings={mapSettings}
-              offers={offerNeighbourhood}
-            />
+            <Map />
 
           </section>
         </section>
