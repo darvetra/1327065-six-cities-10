@@ -1,13 +1,12 @@
 import {Link} from 'react-router-dom';
 import Header from '../../components/header/header';
-import {OfferType} from '../../types/offers';
 import {calcRatingWidth} from '../../utils';
+import {useAppSelector} from '../../hooks';
 
-type FavoritesScreenProps = {
-  favoriteOffers: OfferType[];
-}
+function FavoritesScreen(): JSX.Element {
 
-function FavoritesScreen({favoriteOffers}: FavoritesScreenProps): JSX.Element {
+  const favoriteOffers = useAppSelector((state) => state.offers);
+
   return (
     <div className="page">
 

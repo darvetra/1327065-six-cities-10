@@ -21,3 +21,12 @@ export enum OfferCardStyles {
   MainOfferCardClass = 'cities__card place-card',
   NeighbourhoodOfferCardClass = 'near-places__card place-card',
 }
+
+export const locations = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
+];
