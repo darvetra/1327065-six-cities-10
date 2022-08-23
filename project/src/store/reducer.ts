@@ -7,8 +7,6 @@ import {options, locations} from '../const';
 
 import {offers} from '../mocks/offers';
 
-// const CURRENT_CITY = 'Paris';
-
 const MAP_SETTINGS = {
   // latitude: 52.37454,
   // longitude: 4.897976,
