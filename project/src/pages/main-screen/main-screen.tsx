@@ -9,7 +9,7 @@ import Locations from '../../components/locations/locations';
 import Sorting from '../../components/sorting/sorting';
 
 import {OfferType} from '../../types/offers';
-import {OfferCardStyles, locations} from '../../const';
+import {OfferCardStyles} from '../../const';
 
 function MainScreen(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
@@ -33,7 +33,7 @@ function MainScreen(): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
 
-          <Locations locations={locations}/>
+          <Locations />
 
         </div>
         <div className="cities">

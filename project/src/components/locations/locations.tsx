@@ -1,23 +1,17 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setCityAction, setOffersByCityAction} from '../../store/action';
+import {setCityAction, setOffersByCityAction, setOptionAction} from '../../store/action';
+import {locations, options} from '../../const';
 
-type LocationsProps = {
-  locations: string[];
-}
-
-function Locations(props: LocationsProps) {
-  const {locations} = props;
-
+function Locations(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.selectedCity);
-
   const dispatch = useAppDispatch();
 
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
 
-        {locations.map((location) => (
+        {Object.values(locations).map((location) => (
           <li
             className='locations__item'
             key={location}
@@ -32,6 +26,7 @@ function Locations(props: LocationsProps) {
               onClick={() => {
                 dispatch(setCityAction(location));
                 dispatch(setOffersByCityAction());
+                dispatch(setOptionAction(options.Popular));
               }}
             >
               <span>{location}</span>

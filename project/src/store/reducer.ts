@@ -1,10 +1,13 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setCityAction, setOffersByCityAction} from './action';
-import {getOffersByCity} from '../utils';
+
+import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction} from './action';
+import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
+
+import {options, locations} from '../const';
 
 import {offers} from '../mocks/offers';
 
-const CURRENT_CITY = 'Paris';
+// const CURRENT_CITY = 'Paris';
 
 const MAP_SETTINGS = {
   // latitude: 52.37454,
@@ -15,8 +18,9 @@ const MAP_SETTINGS = {
 };
 
 const initialState = {
-  selectedCity: CURRENT_CITY,
-  offers: getOffersByCity(offers, CURRENT_CITY),
+  selectedCity: locations.Paris,
+  offers: getOffersByCity(offers, locations.Paris),
+  selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
 };
 
@@ -27,6 +31,27 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersByCityAction, (state) => {
       state.offers = getOffersByCity(offers, state.selectedCity);
+    })
+    .addCase(setOptionAction, (state, action) => {
+      state.selectedOption = action.payload;
+    })
+    .addCase(setOffersByOptionAction, (state) => {
+      switch (state.selectedOption) {
+        case options.Popular:
+          state.offers = getOffersByCity(offers, state.selectedCity);
+          break;
+        case options.LowToHigh:
+          state.offers = state.offers.sort(sortPriceHigh);
+          break;
+        case options.HighToLow:
+          state.offers = state.offers.sort(sortPriceLow);
+          break;
+        case options.TopRatedFirst:
+          state.offers = state.offers.sort(sortTopRatedFirst);
+          break;
+        default:
+          state.offers = getOffersByCity(offers, state.selectedCity);
+      }
     });
 });
 
