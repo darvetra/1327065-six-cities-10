@@ -8,8 +8,6 @@ import {options, locations} from '../const';
 import {offers} from '../mocks/offers';
 
 const MAP_SETTINGS = {
-  // latitude: 52.37454,
-  // longitude: 4.897976,
   latitude: 48.85661,
   longitude: 2.351499,
   zoom: 13,
@@ -39,13 +37,13 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = getOffersByCity(offers, state.selectedCity);
           break;
         case options.LowToHigh:
-          state.offers = state.offers.sort(sortPriceHigh);
+          state.offers = state.offers.slice().sort(sortPriceHigh);
           break;
         case options.HighToLow:
-          state.offers = state.offers.sort(sortPriceLow);
+          state.offers = state.offers.slice().sort(sortPriceLow);
           break;
         case options.TopRatedFirst:
-          state.offers = state.offers.sort(sortTopRatedFirst);
+          state.offers = state.offers.slice().sort(sortTopRatedFirst);
           break;
         default:
           state.offers = getOffersByCity(offers, state.selectedCity);

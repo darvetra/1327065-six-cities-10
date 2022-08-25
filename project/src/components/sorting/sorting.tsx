@@ -28,7 +28,7 @@ function Sorting(): JSX.Element {
         </svg>
       </span>
       {
-        isOptionsShow ?
+        isOptionsShow &&
           <ul className="places__options places__options--custom places__options--opened">
             {
               Object.values(options).map((option) => (
@@ -48,7 +48,7 @@ function Sorting(): JSX.Element {
                 </li>
               ))
             }
-          </ul> : null
+          </ul>
       }
     </form>
   );
