@@ -11,9 +11,8 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const URL_MARKER_DEFAULT = '../img/default-pin.svg';
-
-export const URL_MARKER_CURRENT = '../img/current-pin.svg';
+export const URL_MARKER_DEFAULT = '../img/pin.svg';
+export const URL_MARKER_CURRENT = '../img/pin-active.svg';
 
 export enum OfferCardStyles {
   MainOffersListClass = 'cities__places-list places__list tabs__content',
@@ -22,11 +21,18 @@ export enum OfferCardStyles {
   NeighbourhoodOfferCardClass = 'near-places__card place-card',
 }
 
-export const locations = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf'
-];
+export enum locations {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
+export enum options {
+  Popular = 'Popular',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
