@@ -6,8 +6,9 @@ import App from './components/app/app';
 import ErrorMessage from './components/error-message/error-message';
 
 import {store} from './store';
-import {checkAuthAction} from './store/api-actions';
+import {fetchOfferAction, checkAuthAction} from './store/api-actions';
 
+store.dispatch(fetchOfferAction());
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
