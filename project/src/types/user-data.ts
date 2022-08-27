@@ -4,4 +4,4 @@
 //   token: string;
 // };
 
-export {}
+export {};

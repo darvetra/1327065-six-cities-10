@@ -3,4 +3,4 @@
 //   password: string;
 // };
 
-export {}
+export {};
