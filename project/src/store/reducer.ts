@@ -1,7 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers, requireAuthorization, setDataLoadedStatus} from './action';
 import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
+import {
+  setCityAction,
+  setOffersByCityAction,
+  setOptionAction,
+  setOffersByOptionAction,
+  loadOffers,
+  requireAuthorization,
+  setDataLoadedStatus,
+  setError
+} from './action';
 
 import {options, locations, AuthorizationStatus} from '../const';
 
@@ -14,21 +23,23 @@ const MAP_SETTINGS = {
   zoom: 13,
 };
 
-type InitalState = {
+type InitialState = {
   selectedCity: locations,
   offers: OfferType[],
   selectedOption: options,
   mapSettings: MapSettings,
   authorizationStatus: AuthorizationStatus,
+  error: string | null,
   isDataLoaded: boolean,
 }
 
-const initialState: InitalState = {
+const initialState: InitialState = {
   selectedCity: locations.Paris,
   offers: getOffersByCity([], locations.Paris),
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
   authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
   isDataLoaded: false,
 };
 
@@ -66,6 +77,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
