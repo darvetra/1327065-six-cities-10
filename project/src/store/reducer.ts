@@ -1,11 +1,21 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction} from './action';
 import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
+import {
+  setCityAction,
+  setOffersByCityAction,
+  setOptionAction,
+  setOffersByOptionAction,
+  loadOffers,
+  requireAuthorization,
+  setDataLoadedStatus,
+  setError
+} from './action';
 
-import {options, locations} from '../const';
+import {options, locations, AuthorizationStatus} from '../const';
 
-import {offers} from '../mocks/offers';
+import {OfferType} from '../types/offers';
+import {MapSettings} from '../types/map';
 
 const MAP_SETTINGS = {
   latitude: 48.85661,
@@ -13,20 +23,36 @@ const MAP_SETTINGS = {
   zoom: 13,
 };
 
-const initialState = {
+type InitialState = {
+  selectedCity: locations,
+  offers: OfferType[],
+  selectedOption: options,
+  mapSettings: MapSettings,
+  authorizationStatus: AuthorizationStatus,
+  error: string | null,
+  isDataLoaded: boolean,
+}
+
+const initialState: InitialState = {
   selectedCity: locations.Paris,
-  offers: getOffersByCity(offers, locations.Paris),
+  offers: getOffersByCity([], locations.Paris),
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
     .addCase(setCityAction, (state, action) => {
       state.selectedCity = action.payload;
     })
     .addCase(setOffersByCityAction, (state) => {
-      state.offers = getOffersByCity(offers, state.selectedCity);
+      state.offers = getOffersByCity(state.offers, state.selectedCity);
     })
     .addCase(setOptionAction, (state, action) => {
       state.selectedOption = action.payload;
@@ -34,7 +60,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffersByOptionAction, (state) => {
       switch (state.selectedOption) {
         case options.Popular:
-          state.offers = getOffersByCity(offers, state.selectedCity);
+          state.offers = getOffersByCity(state.offers, state.selectedCity);
           break;
         case options.LowToHigh:
           state.offers = state.offers.slice().sort(sortPriceHigh);
@@ -46,8 +72,17 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = state.offers.slice().sort(sortTopRatedFirst);
           break;
         default:
-          state.offers = getOffersByCity(offers, state.selectedCity);
+          state.offers = getOffersByCity(state.offers, state.selectedCity);
       }
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     });
 });
 

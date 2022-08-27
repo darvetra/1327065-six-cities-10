@@ -16,7 +16,7 @@ function OfferCard(props: OfferCardProps): JSX.Element {
     <article
       className={offerCardClass}
       onMouseOver={() => onHoverOfferChange && onHoverOfferChange(id)}
-      onMouseLeave={() => onHoverOfferChange && onHoverOfferChange(0)}
+      onMouseLeave={() => onHoverOfferChange && onHoverOfferChange(-1)}
     >
       {isPremium ?
         <div className='place-card__mark'>
@@ -47,7 +47,9 @@ function OfferCard(props: OfferCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
