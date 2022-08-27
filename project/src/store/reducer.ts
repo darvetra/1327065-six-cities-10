@@ -1,9 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers} from './action';
+import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers, requireAuthorization} from './action';
 import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
 
-import {options, locations} from '../const';
+import {options, locations, AuthorizationStatus} from '../const';
 
 import {offers} from '../mocks/offers';
 
@@ -18,6 +18,7 @@ const initialState = {
   offers: getOffersByCity(offers, locations.Paris),
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -51,6 +52,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
