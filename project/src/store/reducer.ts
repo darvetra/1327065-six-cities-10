@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction} from './action';
+import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers} from './action';
 import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
 
 import {options, locations} from '../const';
@@ -48,6 +48,9 @@ const reducer = createReducer(initialState, (builder) => {
         default:
           state.offers = getOffersByCity(offers, state.selectedCity);
       }
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     });
 });
 
