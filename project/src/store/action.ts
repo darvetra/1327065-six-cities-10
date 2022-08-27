@@ -10,6 +10,7 @@ export const Action = {
   SET_OFFERS_BY_OPTION: 'sort/setOffersByOption',
   LOAD_OFFERS: 'data/loadOffers',
   REQUIRE_AUTHORIZATION: 'user/requireAuthorization',
+  SET_DATA_LOADED_STATUS: 'data/setDataLoadedStatus',
 };
 
 export const setCityAction = createAction<locations>(Action.SET_CITY);
@@ -21,3 +22,5 @@ export const setOffersByOptionAction = createAction(Action.SET_OFFERS_BY_OPTION)
 export const loadOffers = createAction<OfferType[]>(Action.LOAD_OFFERS);
 
 export const requireAuthorization = createAction<AuthorizationStatus>(Action.REQUIRE_AUTHORIZATION);
+
+export const setDataLoadedStatus = createAction<boolean>(Action.SET_DATA_LOADED_STATUS);

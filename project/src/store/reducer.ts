@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 
-import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers, requireAuthorization} from './action';
+import {setCityAction, setOffersByCityAction, setOptionAction, setOffersByOptionAction, loadOffers, requireAuthorization, setDataLoadedStatus} from './action';
 import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '../utils';
 
 import {options, locations, AuthorizationStatus} from '../const';
@@ -20,6 +20,7 @@ type InitalState = {
   selectedOption: options,
   mapSettings: MapSettings,
   authorizationStatus: AuthorizationStatus,
+  isDataLoaded: boolean,
 }
 
 const initialState: InitalState = {
@@ -28,15 +29,19 @@ const initialState: InitalState = {
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
   authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
     .addCase(setCityAction, (state, action) => {
       state.selectedCity = action.payload;
     })
     .addCase(setOffersByCityAction, (state) => {
-      state.offers = getOffersByCity(offers, state.selectedCity);
+      state.offers = getOffersByCity(state.offers, state.selectedCity);
     })
     .addCase(setOptionAction, (state, action) => {
       state.selectedOption = action.payload;
@@ -44,7 +49,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffersByOptionAction, (state) => {
       switch (state.selectedOption) {
         case options.Popular:
-          state.offers = getOffersByCity(offers, state.selectedCity);
+          state.offers = getOffersByCity(state.offers, state.selectedCity);
           break;
         case options.LowToHigh:
           state.offers = state.offers.slice().sort(sortPriceHigh);
@@ -56,14 +61,14 @@ const reducer = createReducer(initialState, (builder) => {
           state.offers = state.offers.slice().sort(sortTopRatedFirst);
           break;
         default:
-          state.offers = getOffersByCity(offers, state.selectedCity);
+          state.offers = getOffersByCity(state.offers, state.selectedCity);
       }
-    })
-    .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     });
 });
 
