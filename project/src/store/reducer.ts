@@ -5,7 +5,8 @@ import {getOffersByCity, sortPriceHigh, sortPriceLow, sortTopRatedFirst} from '.
 
 import {options, locations, AuthorizationStatus} from '../const';
 
-import {offers} from '../mocks/offers';
+import {OfferType} from '../types/offers';
+import {MapSettings} from '../types/map';
 
 const MAP_SETTINGS = {
   latitude: 48.85661,
@@ -13,9 +14,17 @@ const MAP_SETTINGS = {
   zoom: 13,
 };
 
-const initialState = {
+type InitalState = {
+  selectedCity: locations,
+  offers: OfferType[],
+  selectedOption: options,
+  mapSettings: MapSettings,
+  authorizationStatus: AuthorizationStatus,
+}
+
+const initialState: InitalState = {
   selectedCity: locations.Paris,
-  offers: getOffersByCity(offers, locations.Paris),
+  offers: getOffersByCity([], locations.Paris),
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
   authorizationStatus: AuthorizationStatus.Unknown,
