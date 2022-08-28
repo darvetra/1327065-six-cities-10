@@ -4,6 +4,7 @@ import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
 import {AppRoute} from '../../const';
+import {saveUserName} from '../../services/user-name';
 import Logo from '../../components/logo/logo';
 
 function LoginScreen(): JSX.Element {
@@ -15,6 +16,7 @@ function LoginScreen(): JSX.Element {
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
+    saveUserName(authData.email);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
