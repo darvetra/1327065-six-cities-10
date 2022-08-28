@@ -1,7 +1,5 @@
-// export type UserData = {
-//   id: number;
-//   email: string;
-//   token: string;
-// };
-
-export {};
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};

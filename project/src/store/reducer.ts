@@ -9,7 +9,6 @@ import {
   loadOffers,
   requireAuthorization,
   setDataLoadedStatus,
-  setError
 } from './action';
 
 import {options, locations, AuthorizationStatus} from '../const';
@@ -29,7 +28,6 @@ type InitialState = {
   selectedOption: options,
   mapSettings: MapSettings,
   authorizationStatus: AuthorizationStatus,
-  error: string | null,
   isDataLoaded: boolean,
 }
 
@@ -39,7 +37,6 @@ const initialState: InitialState = {
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
   authorizationStatus: AuthorizationStatus.Unknown,
-  error: null,
   isDataLoaded: false,
 };
 
@@ -77,9 +74,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
