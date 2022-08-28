@@ -73,7 +73,7 @@ function LoginScreen(): JSX.Element {
                 />
               </div>
               <button
-                onClick={() => navigate(AppRoute.Main)}
+                onClick={() => navigate(AppRoute.Login)}
                 className="login__submit form__submit button"
                 type="submit"
               >
