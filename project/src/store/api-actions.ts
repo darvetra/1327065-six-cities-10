@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {OfferType} from '../types/offers';
 import {loadOffers, setDataLoadedStatus, setError, requireAuthorization, redirectToRoute} from './action';
-import {saveToken} from '../services/token';
+import {saveToken, dropToken} from '../services/token';
 import {APIRoute, TIMEOUT_SHOW_ERROR, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
@@ -63,15 +63,15 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   },
 );
 
-// export const logoutAction = createAsyncThunk<void, undefined, {
-//   dispatch: AppDispatch,
-//   state: State,
-//   extra: AxiosInstance
-// }>(
-//   'user/logout',
-//   async (_arg, {dispatch, extra: api}) => {
-//     await api.delete(APIRoute.Logout);
-//     dropToken();
-//     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-//   },
-// );
+export const logoutAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/logout',
+  async (_arg, {dispatch, extra: api}) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  },
+);

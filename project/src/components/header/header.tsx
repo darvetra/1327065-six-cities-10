@@ -1,7 +1,12 @@
 import {Link} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks';
+import {logoutAction} from '../../store/api-actions';
+
 import Logo from '../logo/logo';
 
 function Header(): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <header className="header">
       <div className="container">
@@ -12,7 +17,10 @@ function Header(): JSX.Element {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <Link to="/" className="header__nav-link header__nav-link--profile">
+                <Link
+                  to="/"
+                  className="header__nav-link header__nav-link--profile"
+                >
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -20,7 +28,14 @@ function Header(): JSX.Element {
                 </Link>
               </li>
               <li className="header__nav-item">
-                <Link to="/" className="header__nav-link">
+                <Link
+                  to="/"
+                  className="header__nav-link"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    dispatch(logoutAction());
+                  }}
+                >
                   <span className="header__signout">Sign out</span>
                 </Link>
               </li>
