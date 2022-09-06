@@ -28,11 +28,15 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={ <MainScreen /> }
+          element={
+            <MainScreen />
+          }
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginScreen />}
+          element={
+            <LoginScreen />
+          }
         />
         <Route
           path={AppRoute.Favorites}
@@ -46,11 +50,15 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={ <RoomScreen /> }
+          element={
+            <RoomScreen />
+          }
         />
         <Route
           path="*"
-          element={ <NotFoundScreen /> }
+          element={
+            <NotFoundScreen />
+          }
         />
       </Routes>
     </HistoryRouter>

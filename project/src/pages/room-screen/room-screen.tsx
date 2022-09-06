@@ -44,6 +44,10 @@ function RoomScreen(): JSX.Element {
 
   }, [urlId]);
 
+  const updateReviews = (data: ReviewType[]) => {
+    setReviews(data);
+  };
+
   const sortReviews = reviews.sort(sortDayDown).slice(0, MAX_REVIEWS_NUMBER);
 
   const {authorizationStatus} = useAppSelector((state) => state);
@@ -150,7 +154,7 @@ function RoomScreen(): JSX.Element {
 
                   {
                     authorizationStatus === AuthorizationStatus.Auth ?
-                      <ReviewForm/> : null
+                      <ReviewForm id={urlId} updateReviews={updateReviews} /> : null
                   }
 
                 </section>
