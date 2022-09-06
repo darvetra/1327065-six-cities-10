@@ -1,3 +1,8 @@
+export const URL_MARKER_DEFAULT = '../img/pin.svg';
+export const URL_MARKER_CURRENT = '../img/pin-active.svg';
+
+export const MAX_REVIEWS_NUMBER = 10;
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -10,9 +15,6 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
-
-export const URL_MARKER_DEFAULT = '../img/pin.svg';
-export const URL_MARKER_CURRENT = '../img/pin-active.svg';
 
 export enum OfferCardStyles {
   MainOffersListClass = 'cities__places-list places__list tabs__content',
@@ -41,4 +43,5 @@ export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
 }
