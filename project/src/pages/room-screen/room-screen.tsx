@@ -162,7 +162,10 @@ function RoomScreen(): JSX.Element {
             </div>
             <section className='property__map map'>
 
-              <Map />
+              <Map
+                offers={offer && [...offersNearby, offer]}
+                selectedOffer={offer}
+              />
 
             </section>
           </section>
