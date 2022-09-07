@@ -55,6 +55,7 @@ function MainScreen(): JSX.Element {
             <div className="cities__right-section">
 
               <Map
+                offers={offersByCity}
                 selectedOffer={selectedOffer}
               />
 

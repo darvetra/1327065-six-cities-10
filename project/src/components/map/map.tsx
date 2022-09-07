@@ -19,18 +19,19 @@ const currentCustomIcon = new Icon({
 });
 
 type MapProps = {
+  offers: OfferType[] | undefined,
   selectedOffer?: OfferType | undefined,
 };
 
 function Map(props: MapProps): JSX.Element {
-  const {selectedOffer} = props;
-  const {offers, mapSettings} = useAppSelector((state) => state);
+  const {selectedOffer, offers} = props;
+  const {mapSettings} = useAppSelector((state) => state);
 
   const mapRef = useRef(null);
   const map = useMap({mapRef, mapSettings});
 
   useEffect(() => {
-    if (map) {
+    if (map && offers) {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,

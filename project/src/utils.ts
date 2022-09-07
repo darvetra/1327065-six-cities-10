@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import {AuthorizationStatus} from './const';
 import {OfferType} from './types/offers';
+import {ReviewType} from './types/review';
 
 const calcRatingWidth = (rating: number) => `${Math.round(rating) * 20}%`;
 
@@ -19,6 +20,8 @@ const sortTopRatedFirst = (offerA: OfferType, offerB: OfferType) => getWeightFor
 const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
 
+const sortDayDown = (reviewA: ReviewType, reviewB: ReviewType) => dayjs(reviewB.date).diff(dayjs(reviewA.date));
+
 export {
   calcRatingWidth,
   humanizeDate,
@@ -26,6 +29,7 @@ export {
   sortPriceHigh,
   sortPriceLow,
   sortTopRatedFirst,
-  isCheckedAuth
+  isCheckedAuth,
+  sortDayDown
 };
 
