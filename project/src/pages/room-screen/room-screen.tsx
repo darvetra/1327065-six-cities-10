@@ -17,6 +17,7 @@ import {OfferCardStyles, APIRoute, MAX_REVIEWS_NUMBER, AuthorizationStatus} from
 import {api} from '../../store';
 import {useAppSelector} from '../../hooks';
 
+
 function RoomScreen(): JSX.Element {
   const location = useLocation();
   const urlId = Number(location.pathname.split('/').slice(-1));
