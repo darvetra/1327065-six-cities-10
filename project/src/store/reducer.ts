@@ -7,11 +7,10 @@ import {
   setOptionAction,
   setOffersByOptionAction,
   loadOffers,
-  requireAuthorization,
   setDataLoadedStatus,
 } from './action';
 
-import {options, locations, AuthorizationStatus} from '../const';
+import {options, locations} from '../const';
 
 import {OfferType} from '../types/offers';
 import {MapSettings} from '../types/map';
@@ -27,7 +26,6 @@ type InitialState = {
   offers: OfferType[],
   selectedOption: options,
   mapSettings: MapSettings,
-  authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 }
 
@@ -36,7 +34,6 @@ const initialState: InitialState = {
   offers: getOffersByCity([], locations.Paris),
   selectedOption: options.Popular,
   mapSettings: MAP_SETTINGS,
-  authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
 };
 
@@ -71,9 +68,6 @@ const reducer = createReducer(initialState, (builder) => {
         default:
           state.offers = getOffersByCity(state.offers, state.selectedCity);
       }
-    })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
