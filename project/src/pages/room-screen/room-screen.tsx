@@ -17,6 +17,8 @@ import {OfferCardStyles, APIRoute, MAX_REVIEWS_NUMBER, AuthorizationStatus} from
 import {api} from '../../store';
 import {useAppSelector} from '../../hooks';
 
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+
 
 function RoomScreen(): JSX.Element {
   const location = useLocation();
@@ -51,7 +53,7 @@ function RoomScreen(): JSX.Element {
 
   const sortReviews = reviews.sort(sortDayDown).slice(0, MAX_REVIEWS_NUMBER);
 
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     isData ?

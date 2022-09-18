@@ -5,6 +5,7 @@ import {OfferType} from '../../types/offers';
 import {useAppSelector} from '../../hooks';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import 'leaflet/dist/leaflet.css';
+import {getMapSettings} from '../../store/offer-process/selectors';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -25,7 +26,7 @@ type MapProps = {
 
 function Map(props: MapProps): JSX.Element {
   const {selectedOffer, offers} = props;
-  const {mapSettings} = useAppSelector((state) => state);
+  const mapSettings = useAppSelector(getMapSettings);
 
   const mapRef = useRef(null);
   const map = useMap({mapRef, mapSettings});

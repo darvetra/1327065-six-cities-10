@@ -2,11 +2,12 @@ import {useState} from 'react';
 
 import {options} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setOptionAction, setOffersByOptionAction} from '../../store/action';
+import {setOptionAction} from '../../store/offer-process/offer-process';
+import {getSelectedOption} from '../../store/offer-process/selectors';
 
 function Sorting(): JSX.Element {
   const [isOptionsShow, setIsOptionsShow] = useState(false);
-  const selectedOption = useAppSelector((state) => state.selectedOption);
+  const selectedOption = useAppSelector(getSelectedOption);
   const dispatch = useAppDispatch();
 
   return (
@@ -41,7 +42,6 @@ function Sorting(): JSX.Element {
                   onClick={() => {
                     dispatch(setOptionAction(option));
                     setIsOptionsShow((prevItem) => !prevItem);
-                    dispatch(setOffersByOptionAction());
                   }}
                 >
                   {option}

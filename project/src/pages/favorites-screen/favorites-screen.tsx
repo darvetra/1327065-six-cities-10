@@ -2,10 +2,10 @@ import {Link} from 'react-router-dom';
 import Header from '../../components/header/header';
 import {calcRatingWidth} from '../../utils';
 import {useAppSelector} from '../../hooks';
+import {getOffers} from '../../store/offer-data/selectors';
 
 function FavoritesScreen(): JSX.Element {
-
-  const favoriteOffers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
 
   return (
     <div className="page">
@@ -18,7 +18,7 @@ function FavoritesScreen(): JSX.Element {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
 
-              {favoriteOffers.map((offer) => {
+              {offers.map((offer) => {
 
                 const {
                   id,

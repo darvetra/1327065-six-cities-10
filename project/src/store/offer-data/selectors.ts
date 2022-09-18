@@ -1,4 +1,4 @@
-import {NameSpace} from '../../const'
+import {NameSpace} from '../../const';
 import {State} from '../../types/state';
 import {OfferType} from '../../types/offers';
 import {createSelector} from '@reduxjs/toolkit';

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, locations, options} from '../../const'
+import {NameSpace, locations, options} from '../../const';
 import {OfferProcess} from '../../types/state';
 
 
