@@ -1,6 +1,6 @@
 import browserHistory from '../../browser-history';
 import {Middleware} from 'redux';
-import {reducer} from '../reducer';
+import {rootReducer} from '../root-reducer';
 
 /**
  * Мы сконфигурировали историю и теперь надо понять как будем выполнять
@@ -24,7 +24,7 @@ import {reducer} from '../reducer';
  * `/main`.
  */
 
-type Reducer = ReturnType<typeof reducer>;
+type Reducer = ReturnType<typeof rootReducer>;
 
 export const redirect: Middleware<unknown, Reducer> =
   (_store) =>
