@@ -1,10 +1,11 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setCityAction, setOffersByCityAction, setOptionAction} from '../../store/action';
+import {setCityAction, setOptionAction} from '../../store/offer-process/offer-process';
+import {getSelectedCity} from '../../store/offer-process/selectors';
 import {locations, options} from '../../const';
 
 function Locations(): JSX.Element {
-  const selectedCity = useAppSelector((state) => state.selectedCity);
+  const selectedCity = useAppSelector(getSelectedCity);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,7 +26,6 @@ function Locations(): JSX.Element {
               to='/'
               onClick={() => {
                 dispatch(setCityAction(location));
-                dispatch(setOffersByCityAction());
                 dispatch(setOptionAction(options.Popular));
               }}
             >

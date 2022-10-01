@@ -11,11 +11,14 @@ import Sorting from '../../components/sorting/sorting';
 import {OfferType} from '../../types/offers';
 import {OfferCardStyles} from '../../const';
 
+import {filterOffers} from '../../store/offer-data/selectors';
+import {getSelectedCity} from '../../store/offer-process/selectors';
+
 function MainScreen(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
-  const offersByCity = useAppSelector((state) => state.offers);
-  const selectedCity = useAppSelector((state) => state.selectedCity);
+  const offersByCity = useAppSelector(filterOffers);
+  const selectedCity = useAppSelector(getSelectedCity);
 
   const onHoverOfferChange = (id: number) => {
     const currentOffer = offersByCity.find((offer) =>
